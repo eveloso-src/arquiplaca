@@ -1,0 +1,60 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring3-3.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+	layout:decorator="layout/template">
+
+<head th:replace="layouts/base::head(dark)">
+<title>Demo</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/login.css}" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<meta charset="UTF-8">
+</head>
+
+
+<body>
+
+	<form th:action="@{/registration}" method="get">
+		<button class="btn btn-md btn-warning btn-block" type="Submit">Usuarios</button>
+	</form>
+	<section layout:fragment="navbar"></section>
+
+	<div class="container">
+		<br>
+		<div class="row">
+			<div class="col-12 text-center">
+				<img th:src="@{/images/login.jpg}"
+					class="img-responsive center-block" alt="Logo" width="300"
+					height="80" />
+			</div>
+
+		</div>
+		<br>
+
+		<form th:action="@{/login}" method="POST" class="form-signin">
+
+			<div class="row">
+				<div class="col-4 offset-md-4">
+						<input type="text" id="email" name="email" th:placeholder="Email"
+							class="form-control" /> <br /> <input type="password"
+							th:placeholder="Password" id="password" name="password"
+							class="form-control" /> <br />
+
+						<div align="center" th:if="${param.error}">
+							<p style="font-size: 20; color: #FF1C19;">Credenciales
+								incorrectas</p>
+						</div>
+						<button class="btn btn-lg btn-primary btn-block" name="Submit"
+							value="Login" type="Submit" th:text="Login"></button>
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+</html>
