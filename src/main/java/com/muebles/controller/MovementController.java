@@ -23,6 +23,9 @@ public class MovementController {
 	@RequestMapping(value = "/movement", method = RequestMethod.POST)
 	public @ResponseBody ModelAndView saveMovement(Movement mov, BindingResult bindingResult) {
 		ModelAndView modelAndView = new ModelAndView();
+		String color = mov.getCode().replaceAll("[^a-zA-Z].*", "");
+
+		mov.setColor(color);
 		if (!bindingResult.hasErrors()) {
 			movementService.save(mov);
 		} else {

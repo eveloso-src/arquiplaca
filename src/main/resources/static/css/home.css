@@ -3,3 +3,12 @@
 	font-size: 22px;
 	color: #004080;
 }
+
+.capitalise
+{
+    text-transform:capitalize;
+}
+
+.botton-padding{
+	padding-bottom: 20px;
+}

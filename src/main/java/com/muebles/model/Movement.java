@@ -22,35 +22,38 @@ public class Movement {
 	@Column(name = "mov_id")
 	private int id;
 
-//	@Column(name = "date")
-//	@DateTimeFormat(pattern = "dd.MM.yyyy")
-//	@NotEmpty(message = "*Ingrese la fecha")
-//	private java.sql.Date date;
-	@Length(min = 10, message = "*Debe tener 10 caracteres")
 	@Column(name = "date")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@NotEmpty(message = "*Ingrese la fecha")
 	private LocalDate date;
 
 	@Column(name = "code")
-	@Length(min = 5, message = "*Debe tener 5 caracteres")
+	@Length(min = 3, message = "*Debe tener 3 caracteres")
 	@NotEmpty(message = "*Ingrese codigo")
 	private String code;
 	
 
 	@Column(name = "color")
-//	@Length(min = 5, message = "*Debe tener 5 caracteres")
-	@NotEmpty(message = "*Ingrese color")
 	private String color;
 
 	@Column(name = "amount")
 //	@NotEmpty(message = "*Ingrese cantidad")
+//	@Length(min = 1, message = "*Debe tener 1 caracteres")
 	private int amount;
 
 	@Column(name = "m2")
 //	@NotEmpty(message = "*Ingrese m2")
+//	@Length(min = 1, message = "*Debe tener 1 caracteres")
 	private int m2;
 
+	@Column(name = "carpentry")
+	private String carpentry;
+
+	@Column(name = "state")
+	private String state;
+
+	@Column(name = "branch")
+	private String branch;
+	
 	public int getId() {
 		return id;
 	}
@@ -58,14 +61,6 @@ public class Movement {
 	public void setId(int id) {
 		this.id = id;
 	}
-
-//	public java.sql.Date getDate() {
-//		return date;
-//	}
-//
-//	public void setDate(java.sql.Date date) {
-//		this.date = date;
-//	}
 
 	public LocalDate getDate() {
 		return date;
@@ -106,6 +101,30 @@ public class Movement {
 
 	public void setM2(int m2) {
 		this.m2 = m2;
+	}
+
+	public String getCarpentry() {
+		return carpentry;
+	}
+
+	public void setCarpentry(String carpentry) {
+		this.carpentry = carpentry;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getBranch() {
+		return branch;
+	}
+
+	public void setBranch(String branch) {
+		this.branch = branch;
 	}
 
 }

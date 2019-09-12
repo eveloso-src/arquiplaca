@@ -23,58 +23,81 @@
 
 	<div class="container">
 		<form id="logout" th:action="@{/logout}" method="get">
+	
 			<div class="row">
-				<div class="col-md-12 text-right">
+				<div class="col-sm text-left">
+					<h4>MUEBLES CIUDAD</h4>
+				</div>
+				<div class="col-sm text-right">
 					<button type="button" class="btn btn-primary" type="Submit">Logout</button>
-					<!-- 			<button class="btn btn-md btn-danger btn-block" name="registration" -->
-					<!-- 				type="Submit">Logout</button> -->
 				</div>
 			</div>
 		</form>
 
 
-		<!-- 				<div class="panel-group" style="margin-top: 40px">
 		<div class="row">
-			<div class="col-md-6">
+
+			<div class="col-md-4">
+
+				<div class="panel-group" style="margin-top: 40px">
 
 					<div class="panel panel-primary">
 						<div class="panel-heading">
 							<span th:utext="'Nuevo Movimiento'"></span>
 						</div>
-
 						<div class="panel-body">
 
-							<table class="table table-striped table-hover">
-								<thead>
-									<tr>
-										<th>Fecha</th>
-										<th>Codigo</th>
-										<th>Color</th>
-										<th>Descripción</th>
-										<th>Cantidad</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td><input type="text" name="fecha"></td>
-										<td><input type="text" name="fecha"></td>
-										<td><input type="text" name="fecha"></td>
-										<td><input type="text" name="fecha"></td>
-										<td><input type="text" name="fecha"></td>
-									</tr>
-								</tbody>
-							</table>
-							<div class="text-right">
-								<button>Crear</button>
-							</div>
-						</div>
+							<form id="form" th:action=" 
+								@{/movement}"
+								th:object="${movement}" method="post">
+								<div class="row botton-padding">
+									<div class="form-group col-md-4 capitalize">
+										Codigo: <input type="text" class="form-control" id="code"
+											name="code" required />
+									</div>
+									<div class="form-group col-md-4 capitalize" id="productDesc"></div>
+								</div>
 
+								<div class="row">
+									<div class="form-group col-md-4">
+										Cantidad: <input type="number" class="form-control"
+											name="amount" required id="amount" />
+									</div>
+									<div class="form-group col-md-4">
+										m2: <input type="number" class="form-control" name="m2"
+											id="m2" required />
+									</div>
+								</div>
+								<div class="row">
+									<div class="form-group col-md-6">
+										Carpinteria: <input type="text" class="form-control"
+											name="carpentry" id="carpentry" value="San Justo" />
+									</div>
+									<div class="form-group col-md-4">
+										Estado: <input type="text" class="form-control" name="state"
+											id="state" />
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="form-group col-md-8">
+
+										Fecha: <input type="date" required class="form-control"
+											id="date" name="date" th:field="*{date}" />
+									</div>
+									<br>
+									<div class="form-group col-md-4 capitalize">
+										<button type="button" class="btn btn-primary" id="newMov">Crear</button>
+									</div>
+								</div>
+
+							</form>
+						</div>
 					</div>
+					<!--  
+						-->
 				</div>
 			</div>
- -->
-		<div class="row">
-
 			<div class="col-md-8">
 
 				<div class="panel-group" style="margin-top: 40px">
@@ -95,6 +118,7 @@
 										<th>Color</th>
 										<th>Cantidad</th>
 										<th>M2</th>
+										<th>Estado</th>
 									</tr>
 								</thead>
 								<tr class="alert alert-success">
@@ -104,6 +128,7 @@
 									<td>Wengue</td>
 									<td>1</td>
 									<td>6</td>
+									<td>6</td>
 								</tr>
 								<tr class="alert alert-danger">
 									<td>09/09/2019</td>
@@ -112,6 +137,7 @@
 									<td>Roble</td>
 									<td>-2</td>
 									<td>1</td>
+									<td>6</td>
 								</tr>
 								<tr class="alert alert-danger">
 									<td>09/09/2019</td>
@@ -120,6 +146,7 @@
 									<td>Roble</td>
 									<td>-2</td>
 									<td>1</td>
+									<td>6</td>
 								</tr>
 								<tr class="alert alert-success">
 									<td>09/09/2019</td>
@@ -128,6 +155,7 @@
 									<td>Blanca</td>
 									<td>1</td>
 									<td>1</td>
+									<td>6</td>
 								</tr>
 								<tr class="alert alert-success">
 									<td>09/09/2019</td>
@@ -136,6 +164,7 @@
 									<td>Wengue</td>
 									<td>2</td>
 									<td>1</td>
+									<td>6</td>
 								</tr>
 								<tr class="alert alert-success">
 									<td>01/09/2019</td>
@@ -143,6 +172,7 @@
 									<td>Mesa</td>
 									<td>Wengue</td>
 									<td>1</td>
+									<td>6</td>
 									<td>6</td>
 								</tr>
 								<tr class="alert alert-success">
@@ -152,135 +182,98 @@
 									<td>Wengue</td>
 									<td>6</td>
 									<td>1</td>
+									<td>6</td>
 								</tr>
 							</table>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="col-md-4">
-				<div class="panel-group" style="margin-top: 40px">
 
-					<div class="panel panel-primary">
-						<div class="panel-heading">
-							<span th:utext="'Nuevo Movimiento'"></span>
-						</div>
-						<div class="panel-body">
-
-							<form id="form" th:action=" 
-								@{/movement}" 
-								th:object="${movement}"
-								method="post">
-								<div class="form-group">
-
-									Fecha: <input type="date" required class="form-control" id="date" name="date" th:field="*{date}"/>
-								</div>
-
-								<div class="form-group">
-									Codigo: <input type="number" class="form-control" id="code" name="code" required />
-								</div>
-
-								<div class="form-group">
-									Color: <input type="text" class="form-control" name="color" id="color" required/>
-								</div>
-
-
-								<div class="form-group">
-									Cantidad: <input type="number" class="form-control" name="amount" required id="amount"/>
-								</div>
-
-								<div class="form-group">
-									m2: <input type="number" class="form-control" name="m2" id="m2" required/>
-								</div>
-
-								<button type="button" class="btn btn-primary" id="newMov" >Crear</button>
-
-
-								<!-- 								<div class="form-row"> -->
-								<!-- 									<div class="col-md-4 mb-3"> -->
-								<!-- 										<label for="validationCustom01">Fecha</label> <input -->
-								<!-- 											type="date" class="form-control" name="dateInput" -->
-								<!-- 											th:value="${todate}" /> -->
-								<!-- 									</div> -->
-								<!-- 								</div> -->
-							</form>
-						</div>
-
-					</div>
-
-					<!--  
-							<div class="panel-heading">
-								<span th:utext="Productos"></span>
-							</div>
-							<div class="panel-body">
-
-								<table class="table table-striped table-hover">
-									<thead>
-										<tr>
-											<th>Nombre</th>
-											<th>Color</th>
-											<th>Stock</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>Mesa</td>
-											<td>Blanco</td>
-											<td>12</td>
-										</tr>
-										<tr>
-											<td>Negro</td>
-											<td>Botinero</td>
-											<td>1</td>
-										</tr>
-										<tr>
-											<td>Silla</td>
-											<td>Wengue</td>
-											<td>2</td>
-										</tr>
-									</tbody>
-								</table>
-
-							</div>
-					</div>
-						-->
-				</div>
-			</div>
 		</div>
 	</div>
 </body>
 </html>
 
 <script>
-	$('#newMov').click(function() {
-// 		console.log($("form").serialize());
-		$.ajax({
-			type : 'POST',
-			url : $("#form").attr("action"),
-			data : $("form").serialize(),
-			success : function(response) {
-// 				console.log("ok")
-// 				var table = $('#tableMovs');
-				var table = document.getElementById('tableMovs').getElementsByTagName('tbody')[0];
-				var row = table.insertRow(0);
-				var cell1 = row.insertCell(0);
-				var cell2 = row.insertCell(1);
-				var cell3 = row.insertCell(2);
-				var cell4 = row.insertCell(3);
-				var cell5 = row.insertCell(4);
-				var cell6 = row.insertCell(5);
-				var aux = document.getElementById('date').value;
-				var fecha = aux.substring(8,10) + '.' + aux.substring(5,7)  + '.' +aux.substring(0,4); 
-				console.log(fecha);
-				cell1.innerHTML = fecha;
-				cell2.innerHTML = document.getElementById('code').value;
-				cell4.innerHTML = document.getElementById('color').value;
-				cell5.innerHTML = document.getElementById('amount').value;
-				cell6.innerHTML = document.getElementById('m2').value;
-			},
-			error : function(response) {
-				console.log("error")
-			}
-		});
-	});
+	$('#newMov')
+			.click(
+					function() {
+						// 		console.log($("form").serialize());
+						$
+								.ajax({
+									type : 'POST',
+									url : $("#form").attr("action"),
+									data : $("form").serialize(),
+									success : function(response) {
+										// 				console.log("ok")
+										// 				var table = $('#tableMovs');
+										var table = document.getElementById(
+												'tableMovs')
+												.getElementsByTagName('tbody')[0];
+										var row = table.insertRow(0);
+										var cell1 = row.insertCell(0);
+										var aux = document
+												.getElementById('date').value;
+										var fecha = aux.substring(8, 10) + '/'
+												+ aux.substring(5, 7) + '/'
+												+ aux.substring(0, 4);
+										cell1.innerHTML = fecha;
+										var cell2 = row.insertCell(1);
+
+										cell2.innerHTML = document
+												.getElementById('code').value;
+
+										let cell3 = row.insertCell(2);
+										let node = document
+												.getElementById("productDesc").innerHTML;
+										cell3.appendChild(document
+												.createTextNode(node.replace(
+														"<br>", "")));
+
+										var cell4 = row.insertCell(3);
+										var cell5 = row.insertCell(4);
+										var cell6 = row.insertCell(5);
+										var cell7 = row.insertCell(6);
+										let colorText = document
+												.getElementById("code").value;
+										colorText = colorText.replace(/[0-9]/g,
+												'');
+										cell4.innerHTML = colorText;
+										cell5.innerHTML = document
+												.getElementById('amount').value;
+										cell6.innerHTML = document
+												.getElementById('m2').value;
+										cell7.innerHTML = document
+												.getElementById("state").value;
+									},
+									error : function(response) {
+										console.log("error")
+									}
+								});
+					});
+
+	// function searchProduct() {
+	$('#code')
+			.blur(
+
+					function() {
+						document.getElementById("code").value = document
+								.getElementById("code").value.toUpperCase();
+						$
+								.ajax({
+									type : 'GET',
+									url : '/searchProduct?color='
+											+ document.getElementById("code").value,
+									// 		data : form,
+									success : function(response) {
+										document.getElementById('productDesc').innerHTML = '<br>'
+												+ response;
+									},
+									error : function(response) {
+										console.log("error")
+									}
+								});
+					});
+	// }
 </script>
