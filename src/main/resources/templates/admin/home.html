@@ -173,24 +173,24 @@
 								method="post">
 								<div class="form-group">
 
-									Fecha: <input type="date" class="form-control" id="date" name="date" th:field="*{date}"/>
+									Fecha: <input type="date" required class="form-control" id="date" name="date" th:field="*{date}"/>
 								</div>
 
 								<div class="form-group">
-									Codigo: <input type="number" class="form-control" id="code" name="code" />
+									Codigo: <input type="number" class="form-control" id="code" name="code" required />
 								</div>
 
 								<div class="form-group">
-									Color: <input type="text" class="form-control" name="color" id="color"/>
+									Color: <input type="text" class="form-control" name="color" id="color" required/>
 								</div>
 
 
 								<div class="form-group">
-									Cantidad: <input type="text" class="form-control" name="amount" required id="amount"/>
+									Cantidad: <input type="number" class="form-control" name="amount" required id="amount"/>
 								</div>
 
 								<div class="form-group">
-									m2: <input type="text" class="form-control" name="m2" id="m2" required/>
+									m2: <input type="number" class="form-control" name="m2" id="m2" required/>
 								</div>
 
 								<button type="button" class="btn btn-primary" id="newMov" >Crear</button>
@@ -270,7 +270,7 @@
 				var cell5 = row.insertCell(4);
 				var cell6 = row.insertCell(5);
 				var aux = document.getElementById('date').value;
-				var fecha = aux.substring(8,10) + '/' + aux.substring(5,7)  + '/' +aux.substring(0,4); 
+				var fecha = aux.substring(8,10) + '.' + aux.substring(5,7)  + '.' +aux.substring(0,4); 
 				console.log(fecha);
 				cell1.innerHTML = fecha;
 				cell2.innerHTML = document.getElementById('code').value;
