@@ -1,5 +1,8 @@
 package com.muebles.controller;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -29,6 +32,12 @@ public class MovementController {
 		Product p = this.prodRepo.findByColor(mov.getProduct().getColor());
 		mov.setProduct(p);
 		mov.setColor(p.getColor().replaceAll("[0-9]", ""));
+		Date savedDate = mov.getDate();
+		Calendar cal = Calendar.getInstance();
+		cal.set(Calendar.DATE, savedDate.getDate());
+		cal.set(Calendar.MONTH, savedDate.getMonth());
+		cal.set(Calendar.YEAR, savedDate.getYear()+1900);
+		mov.setDate(cal.getTime());
 		if (!bindingResult.hasErrors()) {
 			movementService.save(mov);
 		} else {

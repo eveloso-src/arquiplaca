@@ -1,8 +1,7 @@
 package com.muebles.controller;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.validation.Valid;
 
@@ -15,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.muebles.model.Movement;
 import com.muebles.model.User;
+import com.muebles.repository.MovementRepository;
 import com.muebles.service.UserService;
 
 @Controller
@@ -24,6 +23,9 @@ public class LoginController {
 	
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private MovementRepository movRepo;
 
 	@RequestMapping(value={"/", "/login"}, method = RequestMethod.GET)
 	public ModelAndView login(){
@@ -70,7 +72,10 @@ public class LoginController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		User user = userService.findUserByEmail(auth.getName());
 		modelAndView.addObject(MovementController.getNewMovement());
-//		modelAndView.addObject("todate", LocalDate.now());
+		Calendar fCal = Calendar.getInstance();
+		fCal.add(Calendar.MONTH, -1);
+		Date from = fCal.getTime();
+		modelAndView.addObject("listmov", movRepo.findByDateBetweenOrderByDateDesc(from, new Date()));
 		modelAndView.addObject("userName", "Welcome " + user.getName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
 		modelAndView.addObject("adminMessage","Content Available Only for Users with Admin Role");
 		modelAndView.setViewName("admin/home");
