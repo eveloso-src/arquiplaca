@@ -23,10 +23,12 @@
 
 	<div class="container">
 		<form id="logout" th:action="@{/logout}" method="get">
-	
+
 			<div class="row">
 				<div class="col-sm text-left">
-					<h4>MUEBLES CIUDAD</h4>
+					<img th:src="@{/images/login.jpg}"
+						class="img-responsive center-block" alt="Logo" width="300"
+						height="80" />
 				</div>
 				<div class="col-sm text-right">
 					<button type="button" class="btn btn-primary" type="Submit">Logout</button>
@@ -53,6 +55,7 @@
 								<div class="row botton-padding">
 									<div class="form-group col-md-4 capitalize">
 										Codigo: <input type="text" class="form-control" id="code"
+										 th:field="*{product.color}"
 											name="code" required />
 									</div>
 									<div class="form-group capitalize" id="productDesc"></div>
@@ -67,11 +70,15 @@
 										m2: <input type="number" class="form-control" name="m2"
 											id="m2" required />
 									</div>
+									<div class="form-group col-md-4">
+										Sucursal: <input type="text" class="form-control" name="branch" value="San Justo"
+											id="branch" required />
+									</div>
 								</div>
 								<div class="row">
 									<div class="form-group col-md-6">
 										Carpinteria: <input type="text" class="form-control"
-											name="carpentry" id="carpentry" value="San Justo" />
+											name="carpentry" id="carpentry"  value="Ciudad Muebles"/>
 									</div>
 									<div class="form-group col-md-4">
 										Estado: <input type="text" class="form-control" name="state"
@@ -199,7 +206,7 @@
 	$('#newMov')
 			.click(
 					function() {
-						// 		console.log($("form").serialize());
+								console.log($("form").serialize());
 						$
 								.ajax({
 									type : 'POST',

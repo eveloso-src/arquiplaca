@@ -1,16 +1,16 @@
 package com.muebles.model;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -24,12 +24,16 @@ public class Movement {
 
 	@Column(name = "date")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	private LocalDate date;
+	private Date date;
 
-	@Column(name = "code")
-	@Length(min = 3, message = "*Debe tener 3 caracteres")
-	@NotEmpty(message = "*Ingrese codigo")
-	private String code;
+//	@Column(name = "code")
+//	@Length(min = 3, message = "*Debe tener 3 caracteres")
+//	@NotEmpty(message = "*Ingrese codigo")
+//	private String code;
+	
+	@ManyToOne
+	@JoinColumn(name="prod_id")
+	private Product product;
 	
 
 	@Column(name = "color")
@@ -62,11 +66,11 @@ public class Movement {
 		this.id = id;
 	}
 
-	public LocalDate getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(LocalDate date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
@@ -78,16 +82,24 @@ public class Movement {
 		this.color = color;
 	}
 
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
-	}
+//	public String getCode() {
+//		return code;
+//	}
+//
+//	public void setCode(String code) {
+//		this.code = code;
+//	}
 
 	public int getAmount() {
 		return amount;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
 	public void setAmount(int amount) {

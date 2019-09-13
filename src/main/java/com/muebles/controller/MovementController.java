@@ -1,7 +1,5 @@
 package com.muebles.controller;
 
-import java.time.LocalDate;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -11,6 +9,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.muebles.model.Movement;
+import com.muebles.model.Product;
+import com.muebles.repository.ProductRepository;
 import com.muebles.service.MovementService;
 
 @Controller
@@ -20,12 +20,15 @@ public class MovementController {
 	@Autowired
 	MovementService movementService;
 
+	@Autowired
+	ProductRepository prodRepo;
+	
 	@RequestMapping(value = "/movement", method = RequestMethod.POST)
 	public @ResponseBody ModelAndView saveMovement(Movement mov, BindingResult bindingResult) {
 		ModelAndView modelAndView = new ModelAndView();
-		String color = mov.getCode().replaceAll("[^a-zA-Z].*", "");
-
-		mov.setColor(color);
+		Product p = this.prodRepo.findByColor(mov.getProduct().getColor());
+		mov.setProduct(p);
+		mov.setColor(p.getColor().replaceAll("[0-9]", ""));
 		if (!bindingResult.hasErrors()) {
 			movementService.save(mov);
 		} else {
@@ -38,7 +41,9 @@ public class MovementController {
 
 	public static Movement getNewMovement() {
 		Movement mov = new Movement();
-		mov.setDate(LocalDate.now());
+		Product pr = new Product();
+		mov.setProduct(pr);
+		mov.setDate(new java.util.Date());
 		return mov;
 	}
 
