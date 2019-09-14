@@ -47,7 +47,7 @@ public class Movement {
 	@Column(name = "m2")
 //	@NotEmpty(message = "*Ingrese m2")
 //	@Length(min = 1, message = "*Debe tener 1 caracteres")
-	private int m2;
+	private float m2;
 
 	@Column(name = "carpentry")
 	private String carpentry;
@@ -107,11 +107,11 @@ public class Movement {
 	}
 
 
-	public int getM2() {
+	public float getM2() {
 		return m2;
 	}
 
-	public void setM2(int m2) {
+	public void setM2(float m2) {
 		this.m2 = m2;
 	}
 
