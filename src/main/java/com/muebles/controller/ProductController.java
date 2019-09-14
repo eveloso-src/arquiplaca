@@ -32,7 +32,7 @@ public class ProductController {
 		List<Product>listprod = productRepo.findAll();
 		mav.addObject("product", prod);
 		mav.addObject("listprod", listprod);
-		mav.setViewName("/admin/product");
+		mav.setViewName("admin/product");
 		return mav;
 	}
 	
