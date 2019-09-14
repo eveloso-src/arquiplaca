@@ -12,13 +12,14 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	
-<LINK REL="stylesheet" href="../../static/css/home.css"  TYPE="text/css" >	
 <script>
 	
 </script>
 </head>
 
 <body>
+ <script type="text/javascript" th:src="@{/js/utils.js}"></script>
+
 	<header th:replace="layouts/base::header(dark)"> </header>
 
 	<div class="container">
@@ -178,6 +179,7 @@ $.each(list, function(index, cell) {
 												'tableMovs')
 												.getElementsByTagName('tbody')[0];
 										var row = table.insertRow(0);
+										
 										var cell1 = row.insertCell(0);
 										var aux = document
 												.getElementById('date').value;
@@ -185,11 +187,8 @@ $.each(list, function(index, cell) {
 												+ aux.substring(5, 7) + '/'
 												+ aux.substring(0, 4);
 										cell1.innerHTML = fecha;
-										var cell2 = row.insertCell(1);
-
-										cell2.innerHTML = document
-												.getElementById('code').value;
-
+										
+										addRow(row, 'code');
 										let cell3 = row.insertCell(2);
 										let node = document
 												.getElementById("productDesc").innerHTML;
@@ -198,29 +197,22 @@ $.each(list, function(index, cell) {
 														"<br>", "")));
 
 										var cell4 = row.insertCell(3);
-										var cell5 = row.insertCell(4);
-										var cell6 = row.insertCell(5);
-										var cell7 = row.insertCell(6);
-										var cell8 = row.insertCell(7);
-										var cell9 = row.insertCell(8);
 
 										let colorText = document
 												.getElementById("code").value;
 										colorText = colorText.replace(/[0-9]/g,
 												'');
 										cell4.innerHTML = colorText;
+										
+										var cell5 = row.insertCell(4);
 										cell5.innerHTML = document
 												.getElementById('amount').value;
 										greenRed(cell5);
-										cell6.innerHTML = document
-												.getElementById('m2').value;
-										cell7.innerHTML = document
-												.getElementById("state").value;
+										addRow(row, 'm2');
+										addRow(row, 'state');
+										addRow(row, 'carpentry');
+										addRow(row, 'branch');
 
-										cell8.innerHTML = document
-												.getElementById("carpentry").value;
-										cell9.innerHTML = document
-												.getElementById("branch").value;
 									},
 									error : function(response) {
 										console.log("error")

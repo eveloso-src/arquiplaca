@@ -29,7 +29,6 @@ public class MovementController {
 	
 	@RequestMapping(value = "/movement", method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity<String> saveMovement(Movement mov, BindingResult bindingResult) {
-//		ModelAndView modelAndView = new ModelAndView();
 		Product p = this.prodRepo.findByColor(mov.getProduct().getColor());
 		mov.setProduct(p);
 		mov.setColor(p.getColor().replaceAll("[0-9]", ""));
@@ -41,12 +40,13 @@ public class MovementController {
 		mov.setDate(cal.getTime());
 		if (!bindingResult.hasErrors()) {
 			movementService.save(mov);
+			p.setStock(p.getStock() + mov.getAmount());
+			prodRepo.save(p);
 		} else {
 			System.out.println("error save movement");
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
 
-//		modelAndView.setViewName("admin/home");
 		return new ResponseEntity<String>("admin/home", HttpStatus.OK);
 	}
 
