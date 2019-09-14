@@ -148,14 +148,18 @@
 </html>
 
 <script>
-let list = $('td[id^=td]');
-$.each(list, function(index, cell) {
+function greenRed(cell) {
 	if(cell.innerHTML > 0){
 		cell.style.backgroundColor="#A8F894";
 	}
 	else {
 		cell.style.backgroundColor="#F98D6F";
 	}
+
+}
+let list = $('td[id^=td]');
+$.each(list, function(index, cell) {
+	greenRed(cell);
 });
 	$('#newMov')
 			.click(
@@ -206,6 +210,7 @@ $.each(list, function(index, cell) {
 										cell4.innerHTML = colorText;
 										cell5.innerHTML = document
 												.getElementById('amount').value;
+										greenRed(cell5);
 										cell6.innerHTML = document
 												.getElementById('m2').value;
 										cell7.innerHTML = document
