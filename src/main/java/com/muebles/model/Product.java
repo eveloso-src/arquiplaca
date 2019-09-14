@@ -21,14 +21,14 @@ public class Product {
 
 
 	@Column(name = "code")
-	@Length(min = 5, message = "*Debe tener 3 caracteres")
+	@Length(min = 3, message = "*Debe tener 3 caracteres")
 	@NotEmpty(message = "*Ingrese codigo")
 	private String code;
 	
 
 	@Column(name = "color")
-	@Length(min = 1, message = "*Debe tener 1 caracteres")
-	@NotEmpty(message = "*Ingrese color")
+//	@Length(min = 1, message = "*Debe tener 1 caracteres")
+//	@NotEmpty(message = "*Ingrese color")
 	private String color;
 
 	@Column(name = "description")
@@ -37,7 +37,8 @@ public class Product {
 	private String description;
 
 	@Column(name = "stock")
-	@NotEmpty(message = "*Ingrese cantidad")
+//	@NotEmpty(message = "*Ingrese cantidad")
+//	@Length(min = 1, message = "*Debe tener 3 caracteres")
 	private int stock;
 
 	public int getId() {

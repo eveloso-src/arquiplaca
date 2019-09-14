@@ -4,7 +4,6 @@
 	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
 <head>
 <title>Home Page</title>
-<link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -12,11 +11,11 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+	
+<LINK REL="stylesheet" href="../../static/css/home.css"  TYPE="text/css" >	
 <script>
 	
 </script>
-
 </head>
 
 <body>
@@ -109,7 +108,7 @@
 
 						<div class="panel-body">
 							<table id="tableMovs"
-								class="table table-striped table-responsive table-hover table-condensed">
+								class="table w-auto text-xsmall table-striped table-responsive table-hover table-condensed">
 								<thead>
 									<tr>
 										<th>Fecha</th>
@@ -155,6 +154,7 @@ function greenRed(cell) {
 	else {
 		cell.style.backgroundColor="#F98D6F";
 	}
+	cell.style.textAlign="center";
 
 }
 let list = $('td[id^=td]');
@@ -164,6 +164,7 @@ $.each(list, function(index, cell) {
 	$('#newMov')
 			.click(
 					function() {
+// 						validateForm();
 						// 						console.log($("form").serialize());
 						$
 								.ajax({

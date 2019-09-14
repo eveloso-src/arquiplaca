@@ -4,12 +4,13 @@ import java.util.Calendar;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.muebles.model.Movement;
 import com.muebles.model.Product;
@@ -27,8 +28,8 @@ public class MovementController {
 	ProductRepository prodRepo;
 	
 	@RequestMapping(value = "/movement", method = RequestMethod.POST)
-	public @ResponseBody ModelAndView saveMovement(Movement mov, BindingResult bindingResult) {
-		ModelAndView modelAndView = new ModelAndView();
+	public @ResponseBody ResponseEntity<String> saveMovement(Movement mov, BindingResult bindingResult) {
+//		ModelAndView modelAndView = new ModelAndView();
 		Product p = this.prodRepo.findByColor(mov.getProduct().getColor());
 		mov.setProduct(p);
 		mov.setColor(p.getColor().replaceAll("[0-9]", ""));
@@ -42,10 +43,11 @@ public class MovementController {
 			movementService.save(mov);
 		} else {
 			System.out.println("error save movement");
+			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
 
-		modelAndView.setViewName("admin/home");
-		return modelAndView;
+//		modelAndView.setViewName("admin/home");
+		return new ResponseEntity<String>("admin/home", HttpStatus.OK);
 	}
 
 	public static Movement getNewMovement() {
