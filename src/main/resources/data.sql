@@ -1,1 +1,0 @@
-ALTER SEQUENCE product_pkey RESTART WITH 1000;
