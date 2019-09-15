@@ -47,7 +47,7 @@ public class ProductController {
 			Product prod = new Product();
 //			mav.addObject("product", prod);
 			productRepo.save(product);
-			return new ResponseEntity<String>("product", HttpStatus.OK);
+			return new ResponseEntity<String>("admin/product", HttpStatus.OK);
 			
 		}
 		else {
