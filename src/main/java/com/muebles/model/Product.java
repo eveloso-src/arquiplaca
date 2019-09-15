@@ -14,7 +14,8 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Table(name = "product")
 public class Product {
 
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "prod_id")
 	private int id;
 
@@ -25,7 +26,6 @@ public class Product {
 	private String code;
 	
 
-	@Id
 	@Column(name = "color")
 //	@Length(min = 1, message = "*Debe tener 1 caracteres")
 //	@NotEmpty(message = "*Ingrese color")
