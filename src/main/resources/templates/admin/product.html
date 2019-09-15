@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="stylesheet" type="text/css"
 	th:href="@{/css/registration.css}" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
@@ -100,6 +101,8 @@
 
 								<thead>
 									<tr>
+										<th></th>
+										<th></th>
 										<th>Codigo</th>
 										<th>Color</th>
 										<th>Descripción</th>
@@ -107,7 +110,9 @@
 									</tr>
 								</thead>
 								<tr th:each="item: ${listprod}">
-									<td th:text="${item.code}" />
+									<td><a href="product"><i class="fa fa-pencil-square-o"></i></a></td>
+									<td><a href="delete"><i class="fa fa-trash"></i></a></td>
+									<td th:text="${item.code}" ></td>
 									<td th:text="${item.color}" />
 									<td th:text="${item.description}" />
 									<td th:text="${item.stock}" />
