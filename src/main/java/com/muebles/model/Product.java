@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.Length;
@@ -15,7 +16,9 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Product {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+//	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="products_id_seq")
+    @SequenceGenerator(name="products_id_seq", sequenceName="products_id_seq", allocationSize=1)
 	@Column(name = "prod_id")
 	private int id;
 
