@@ -18,7 +18,7 @@ public class Product {
 	@Id
 //	@GeneratedValue(strategy = GenerationType.AUTO)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="products_id_seq")
-    @SequenceGenerator(name="products_id_seq", sequenceName="products_id_seq", allocationSize=1)
+    @SequenceGenerator(name="products_id_seq", sequenceName="products_id_seq", allocationSize=1, initialValue=1000)
 	@Column(name = "prod_id")
 	private int id;
 
