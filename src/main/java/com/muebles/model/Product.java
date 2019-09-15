@@ -15,7 +15,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Product {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "prod_id")
 	private int id;
 
