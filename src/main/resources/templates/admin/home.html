@@ -59,8 +59,8 @@
 											name="amount" required id="amount" />
 									</div>
 									<div class="form-group col-md-4">
-										<b>m2: </b><input type="number" class="form-control" name="m2"
-											id="m2" required />
+										<b>m2: </b><input type="number" class="form-control" name="m2" readonly
+											id="m2"  />
 									</div>
 									<div class="form-group col-md-4">
 										<b>Sucursal: </b><input type="text" class="form-control"
@@ -221,6 +221,25 @@ $.each(list, function(index, cell) {
 								});
 					});
 
+	$('#amount')
+	.blur(function() {
+		$
+		.ajax({
+			type : 'GET',
+			url : '/searchM2?color='
+					+ document.getElementById("code").value,
+			success : function(response) {
+				let amount = document.getElementById('amount').value ;
+				
+				document.getElementById('m2').value = parseInt(amount,10) * parseFloat(response);
+			},
+			error : function(response) {
+				console.log("error")
+			}
+		});
+
+	});
+	
 	// function searchProduct() {
 	$('#code')
 			.blur(
@@ -235,6 +254,7 @@ $.each(list, function(index, cell) {
 											+ document.getElementById("code").value,
 									// 		data : form,
 									success : function(response) {
+										
 										document.getElementById('productDesc').innerHTML = '<br>'
 												+ response;
 									},

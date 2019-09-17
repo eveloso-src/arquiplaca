@@ -44,6 +44,19 @@ public class Product {
 //	@Length(min = 1, message = "*Debe tener 3 caracteres")
 	private int stock;
 
+	@Column(name = "m2")
+//	@NotEmpty(message = "*Ingrese cantidad")
+//	@Length(min = 1, message = "*Debe tener 3 caracteres")
+	private float m2;
+	
+	public float getM2() {
+		return m2;
+	}
+
+	public void setM2(float m2) {
+		this.m2 = m2;
+	}
+
 	public int getId() {
 		return id;
 	}

@@ -38,6 +38,7 @@ public class MovementController {
 		cal.set(Calendar.MONTH, savedDate.getMonth());
 		cal.set(Calendar.YEAR, savedDate.getYear()+1900);
 		mov.setDate(cal.getTime());
+		mov.setM2(p.getM2()*mov.getAmount());
 		if (!bindingResult.hasErrors()) {
 			movementService.save(mov);
 			p.setStock(p.getStock() + mov.getAmount());

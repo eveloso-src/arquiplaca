@@ -67,4 +67,16 @@ public class ProductController {
 		}
 	}
 
+	@GetMapping("/searchM2")
+	@ResponseBody
+	public String getProductM2(@RequestParam String color, Movement mov, BindingResult bindingResult) {
+		Product prod = productRepo.findByColor(color);
+		if (prod != null) {
+			return "" + prod.getM2();
+		} else {
+			return "";
+		}
+	}
+
+	
 }
