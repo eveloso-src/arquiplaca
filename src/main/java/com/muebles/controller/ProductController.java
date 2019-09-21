@@ -40,11 +40,11 @@ public class ProductController {
 	public @ResponseBody ResponseEntity<String> saveProduct(Product product, BindingResult bindingResult) {
 //		ModelAndView mav = new ModelAndView();
 //		mav.setViewName("/admin/product");
-		Product pDB = productRepo.findByColor(product.getCode());
+		Product pDB = productRepo.findByColor(product.getCode() + product.getColor());
 		if (pDB == null) {
-			String color = product.getCode().replaceAll("[0-9]", "");
-			product.setColor(product.getCode() + color);
-			Product prod = new Product();
+//			String color = product.getCode().replaceAll("[0-9]", "");
+//			product.setColor(product.getCode() + color);
+//			Product prod = new Product();
 //			mav.addObject("product", prod);
 			productRepo.save(product);
 			return new ResponseEntity<String>("admin/product", HttpStatus.OK);

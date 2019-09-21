@@ -1,1 +1,0 @@
-update product set m2 = 1;

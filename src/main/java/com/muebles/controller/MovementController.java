@@ -26,19 +26,19 @@ public class MovementController {
 
 	@Autowired
 	ProductRepository prodRepo;
-	
+
 	@RequestMapping(value = "/movement", method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity<String> saveMovement(Movement mov, BindingResult bindingResult) {
-		Product p = this.prodRepo.findByColor(mov.getProduct().getColor());
+		Product p = this.prodRepo.findByColor(mov.getProduct().getCode() + mov.getProduct().getColor());
 		mov.setProduct(p);
-		mov.setColor(p.getColor().replaceAll("[0-9]", ""));
+//		mov.setColor(p.getColor().replaceAll("[0-9]", ""));
 		Date savedDate = mov.getDate();
 		Calendar cal = Calendar.getInstance();
 		cal.set(Calendar.DATE, savedDate.getDate());
 		cal.set(Calendar.MONTH, savedDate.getMonth());
-		cal.set(Calendar.YEAR, savedDate.getYear()+1900);
+		cal.set(Calendar.YEAR, savedDate.getYear() + 1900);
 		mov.setDate(cal.getTime());
-		mov.setM2(p.getM2()*mov.getAmount());
+		mov.setM2(p.getM2() * mov.getAmount());
 		if (!bindingResult.hasErrors()) {
 			movementService.save(mov);
 			p.setStock(p.getStock() + mov.getAmount());
